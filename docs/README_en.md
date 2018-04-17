@@ -29,7 +29,7 @@ $ composer require lkallas/estonianpin
 | isValidatedByRegex | Estonian Personal Identification Number `string` | `boolean` | Checks whether the Personal Identification Number format passes regular expression |
 | validateWithExceptions | Estonian Personal Identification Number `string` | `true` on successful validation, otherwise corresponding `exception` is thrown | Performs various Estonian Personal Identification Number validations: structure, date of birth and checksum validation |
 | validate | Estonian Personal Identification Number `string` | `boolean` | Performs various Estonian Personal Identification Number validations: structure, date of birth and checksum validation |
-| getGender | Estonian Personal Identification Number `string` | `male` or `female` | Returns person's gender based on Estonian Personal Identification Number |
+| getGender | Estonian Personal Identification Number `string` | `string` male or female | Returns person's gender based on Estonian Personal Identification Number |
 | getBirthCentury  | Estonian Personal Identification Number `string` | `int` | Returns person's birth century based on Estonian Personal Identification Number |
 | getYearOfBirth | Estonian Personal Identification Number `string` | `int` | Returns person's year of birth based on Estonian Personal Identification Number |
 | getMonthOfBirth | Estonian Personal Identification Number `string` | `int` | Returns person's month of birth based on Estonian Personal Identification Number |

@@ -29,7 +29,7 @@ $ composer require lkallas/estonianpin
 | isValidatedByRegex | isikukood `string` | `boolean` | Teostab regulaaravaldisega kontrolli kas isikukoodi struktuur vastab nõuetele |
 | validateWithExceptions | isikukood `string` | `true` eduka valideerimise puhul, ebaõnnestumisel visatakse vastav `exception` | Teostab isikukoodile järgnevad kontrollid: struktuur, sünnikuupäev, kontrollnumbri õigsus |
 | validate | isikukood `string` | `boolean` | Teostab isikukoodile järgnevad kontrollid: struktuur, sünnikuupäev, kontrollnumbri õigsus |
-| getGender | isikukood `string` | `male` või `female` | Tagastab isiku soo isikukoodi alusel |
+| getGender | isikukood `string` | `string` male või female | Tagastab isiku soo isikukoodi alusel |
 | getBirthCentury  | isikukood `string` | `int` | Tagastab isiku sünni sajandi isikukoodi alusel |
 | getYearOfBirth | isikukood `string` | `int` | Tagastab isiku sünniaasta isikukoodi alusel |
 | getMonthOfBirth | isikukood `string` | `int` | Tagastab isiku sünnikuu isikukoodi alusel |
