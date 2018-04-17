@@ -7,7 +7,7 @@ use Lkallas\Estonianpin\Exceptions\InvalidCheckSumException;
 use Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException;
 
 /**
- * Class for working (parsing, validating etc) Estonian Personal Identification Numbers.
+ * Class for processing (parsing, validating etc) Estonian Personal Identification Numbers.
  *
  * @author Lennar Kallas <lennar@lennar.eu>
  */
