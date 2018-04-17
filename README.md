@@ -2,6 +2,9 @@
 
 [![Build Status](https://travis-ci.org/lkallas/estonianpin.svg?branch=master)](https://travis-ci.org/lkallas/estonianpin)
 [![codecov](https://codecov.io/gh/lkallas/estonianpin/branch/master/graph/badge.svg)](https://codecov.io/gh/lkallas/estonianpin)
+[![Total Downloads](https://img.shields.io/packagist/dt/lkallas/estonianpin.svg)](https://packagist.org/packages/lkallas/estonianpin)
+[![GitHub issues](https://img.shields.io/github/issues/lkallas/estonianpin.svg)](https://github.com/lkallas/estonianpin/issues)
+[![GitHub license](https://img.shields.io/github/license/lkallas/estonianpin.svg)](https://github.com/lkallas/estonianpin/blob/master/LICENSE)
 [![HitCount](http://hits.dwyl.io/lkallas/estonianpin.svg)](http://hits.dwyl.io/lkallas/estonianpin)
 
 
