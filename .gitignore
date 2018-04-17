@@ -1,0 +1,5 @@
+/nbproject/
+/phpunit.xml
+/vendor/
+composer.lock
+/tests/_reports/
