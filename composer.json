@@ -1,7 +1,16 @@
 {
     "name": "lkallas/estonianpin",
-    "description": "A simple library for processing Estonian Personal Identification Number (isikukood).",
-    "keywords": ["estonia", "pin", "isikukood", "php"],    
+    "description": "A simple library for processing Estonian Personal Identification Code (isikukood).",
+    "keywords": [
+        "estonia", 
+        "pin", 
+        "isikukood", 
+        "php", 
+        "personal id", 
+        "personal identification code",
+        "national id",
+        "personal identification number"
+    ],    
     "homepage": "http://github.com/lkallas/estonianpin",
     "type": "library",
     "version": "1.0.0",
