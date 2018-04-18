@@ -18,7 +18,7 @@ echo 'Validation with control number check ' . ($validated ? 'PASSSED' : 'FAILED
 // Validation that throws corresponding exceptions on validation failures.
 try {
     $estonianPIN->validateWithExceptions($pin);
-    echo $pin . ' is a valid Estonian Personal Identification Number' . PHP_EOL;
+    echo $pin . ' is a valid Estonian Personal Identification Code' . PHP_EOL;
 } catch (Exception $exc) {
     echo $exc->getMessage();
 }

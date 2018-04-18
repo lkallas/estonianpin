@@ -7,7 +7,7 @@ use Lkallas\Estonianpin\Exceptions\InvalidCheckSumException;
 use Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException;
 
 /**
- * Class for processing (parsing, validating etc) Estonian Personal Identification Numbers.
+ * Class for processing (parsing, validating etc) Estonian Personal Identification Codes.
  *
  * @author Lennar Kallas <lennar@lennar.eu>
  */
@@ -18,16 +18,16 @@ class EstonianPIN {
     const PIN_REGEX = '/^[1-6](0\d{1}|[1-9]\d{1})(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{4}$/';
 
     /**
-     * Get the person gender by Personal Identification Number. 
+     * Get the person gender by Personal Identification Code. 
      * 
-     * @param string $pin Estonian Personal Identification Number.
+     * @param string $pin Estonian Personal Identification Code.
      * @return string Person gender: 'male' or 'female'.
      * @throws \Lkallas\Exceptions\InvalidPersonalIdentificationNrException 
-     * If validation of Personal Identification Number fails.
+     * If validation of Personal Identification Code fails.
      */
     public function getGender($pin): string {
         if (!$this->isValidatedByRegex($pin)) {
-            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Number format!');
+            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Code format!');
         }
 
         $genderIdentifier = (int) substr($pin, 0, 1);
@@ -35,16 +35,16 @@ class EstonianPIN {
     }
 
     /**
-     * Get the century of the persons birth date by Personal Identification Number.
+     * Get the century of the persons birth date by Personal Identification Code.
      * 
-     * @param string $pin Estonian Personal Identification Number.
+     * @param string $pin Estonian Personal Identification Code.
      * @return int The century when the person was born eg. 1900, 2000 etc
      * @throws \Lkallas\Exceptions\InvalidPersonalIdentificationNrException 
-     * If validation of Personal Identification Number fails.
+     * If validation of Personal Identification Code fails.
      */
     public function getBirthCentury($pin): int {
         if (!$this->isValidatedByRegex($pin)) {
-            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Number format!');
+            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Code format!');
         }
 
         $century = 0;
@@ -61,16 +61,16 @@ class EstonianPIN {
     }
 
     /**
-     * Get the person's year of birth by Personal Identification Number.
+     * Get the person's year of birth by Personal Identification Code.
      * 
-     * @param string $pin Estonian Personal Identification Number.
+     * @param string $pin Estonian Personal Identification Code.
      * @return int The year when the person was born.
      * @throws InvalidPersonalIdentificationNrException 
-     * If validation of Personal Identification Number fails.
+     * If validation of Personal Identification Code fails.
      */
     public function getYearOfBirth($pin): int {
         if (!$this->isValidatedByRegex($pin)) {
-            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Number format!');
+            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Code format!');
         }
         $year = (int) ltrim(substr($pin, 1, 2), '0');
         $century = $this->getBirthCentury($pin);
@@ -78,37 +78,37 @@ class EstonianPIN {
     }
 
     /**
-     * Get the person's month of birth by Personal Identification Number.
+     * Get the person's month of birth by Personal Identification Code.
      * 
-     * @param type $pin Estonian Personal Identification Number.
+     * @param type $pin Estonian Personal Identification Code.
      * @return int The month when the person was born.
      * @throws InvalidPersonalIdentificationNrException
-     * If validation of Personal Identification Number fails.
+     * If validation of Personal Identification Code fails.
      */
     public function getMonthOfBirth($pin): int {
         if (!$this->isValidatedByRegex($pin)) {
-            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Number format!');
+            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Code format!');
         }
         return (int) ltrim(substr($pin, 3, 2), '0');
     }
 
     /**
-     * Get the person's day of birth by Estonian Personal Identification Number.
+     * Get the person's day of birth by Estonian Personal Identification Code.
      * 
-     * @param type $pin Estonian Personal Identification Number.
+     * @param type $pin Estonian Personal Identification Code.
      * @return int The day when the person was born.
      * @throws InvalidPersonalIdentificationNrException
-     * If validation of Personal Identification Number fails.
+     * If validation of Personal Identification Code fails.
      */
     public function getDayOfBirth($pin): int {
         if (!$this->isValidatedByRegex($pin)) {
-            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Number format!');
+            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Code format!');
         }
         return (int) ltrim(substr($pin, 5, 2), '0');
     }
 
     /**
-     * Get the person's serial number from Estonian Personal Identification Number.
+     * Get the person's serial number from Estonian Personal Identification Code.
      * 
      * Prior to year of 2013 serial number consisted a hospital identification 
      * number and the birth number in the hospital of that given day.
@@ -116,29 +116,29 @@ class EstonianPIN {
      * Starting 2013 all newborns get their serial number from common Estonian register 
      * and the number is a birth number of that given day in Estonia. 
      * 
-     * @param string $pin Estonian Personal Identification Number.
+     * @param string $pin Estonian Personal Identification Code.
      * @return string Serial number which can consist leading zeros.
      * @throws InvalidPersonalIdentificationNrException
-     * If validation of Personal Identification Number fails.
+     * If validation of Personal Identification Code fails.
      */
     public function getSerialNumber($pin): string {
         if (!$this->isValidatedByRegex($pin)) {
-            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Number format!');
+            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Code format!');
         }
         return substr($pin, 7, 3);
     }
 
     /**
-     * Get the person's date of birth as PHP DateTime object by Personal Identification Number.
+     * Get the person's date of birth as PHP DateTime object by Personal Identification Code.
      * 
-     * @param type $pin Estonian Personal Identification Number.
+     * @param type $pin Estonian Personal Identification Code.
      * @return \DateTime The date of birth as PHP DateTime object.
      * @throws InvalidPersonalIdentificationNrException
-     * If validation of Personal Identification Number fails.
+     * If validation of Personal Identification Code fails.
      */
     public function getBirthDateAsDatetimeObj($pin): \DateTime {
         if (!$this->validate($pin)) {
-            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Number format!');
+            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Code format!');
         }
 
         $dateOfBirth = sprintf(
@@ -152,14 +152,14 @@ class EstonianPIN {
      * Get the person's current age as PHP DateInterval object.
      * Note that DateInterval calculation precision depends on timezone set in php.ini.
      * 
-     * @param type $pin Estonian Personal Identification Number.
+     * @param type $pin Estonian Personal Identification Code.
      * @return \DateInterval The current age as PHP DateInterval object.
      * @throws InvalidPersonalIdentificationNrException
-     * If validation of Personal Identification Number fails.
+     * If validation of Personal Identification Code fails.
      */
     public function getCurrentAgeByPIN($pin): \DateInterval {
         if (!$this->isValidatedByRegex($pin)) {
-            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Number format!');
+            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Code format!');
         }
 
         $birthDay = $this->getBirthDateAsDatetimeObj($pin);
@@ -169,20 +169,20 @@ class EstonianPIN {
 
     public function getCurrentAgeInYearsByPIN($pin): int {
         if (!$this->isValidatedByRegex($pin)) {
-            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Number format!');
+            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Code format!');
         }
 
         return $this->getCurrentAgeByPIN($pin)->y;
     }
 
     /**
-     * Performs regular expression check against Estonian Personal Identification Number.
+     * Performs regular expression check against Estonian Personal Identification Code.
      * Note that this does not perform full validation on dates(leap years), control number etc.
-     * Use this only to pre-validate the format of the Personal Identification Number.
+     * Use this only to pre-validate the format of the Personal Identification Code.
      * 
      * 
-     * @param type $pin Estonian Personal Identification Number.
-     * @return bool True if Estonian Personal Identification Number matches the 
+     * @param type $pin Estonian Personal Identification Code.
+     * @return bool True if Estonian Personal Identification Code matches the 
      * regular expression, false otherwise.
      */
     public function isValidatedByRegex($pin): bool {
@@ -190,11 +190,11 @@ class EstonianPIN {
     }
 
     /**
-     * Validate Estonian Personal Identification Number against all rules set 
+     * Validate Estonian Personal Identification Code against all rules set 
      * by Estonian laws.
      * 
-     * @param string $pin Estonian Personal Identification Number.
-     * @return bool True if the Personal Identification Number passes all 
+     * @param string $pin Estonian Personal Identification Code.
+     * @return bool True if the Personal Identification Code passes all 
      * validation steps, false otherwise.
      */
     public function validate($pin): bool {
@@ -206,11 +206,11 @@ class EstonianPIN {
     }
 
     /**
-     * Validates Estonian Personal Identification Number. 
+     * Validates Estonian Personal Identification Code. 
      * Throws descriptive exceptions if any of the validation steps fails.
      * 
-     * @param type $pin Estonian Personal Identification Number.
-     * @return bool True if Estonian Personal Identification Number passes 
+     * @param type $pin Estonian Personal Identification Code.
+     * @return bool True if Estonian Personal Identification Code passes 
      * all validations, false otherwise.
      * @throws InvalidDateException
      * @throws InvalidCheckSumException
@@ -219,7 +219,7 @@ class EstonianPIN {
     public function validateWithExceptions($pin): bool {
         // Initial check: must be string and match the regex.
         if (!$this->isValidatedByRegex($pin)) {
-            throw new InvalidPersonalIdentificationNrException($pin . 'is not a valid Personal Identification Number. '
+            throw new InvalidPersonalIdentificationNrException($pin . 'is not a valid Personal Identification Code. '
             . 'Check length, gender/century indentificator and date format.'
             );
         }
@@ -229,7 +229,7 @@ class EstonianPIN {
             throw new InvalidDateException($pin . ' has invalid birthdate!');
         }
 
-        // Checksum of the personal identification number (last digit)
+        // Checksum of the Personal Identification Code (last digit)
         $checkSum = (int) substr($pin, -1);
         $calculatedCheckSum = $this->calculateCheckSum($pin);
 
@@ -243,9 +243,9 @@ class EstonianPIN {
     }
 
     /**
-     * Calculates the Estonian Personal Identification Number checksum.
+     * Calculates the Estonian Personal Identification Code checksum.
      * 
-     * @param string $pin Estonian Personal Identification Number.
+     * @param string $pin Estonian Personal Identification Code.
      * @return int Calculated checksum.
      */
     public function calculateCheckSum($pin): int {
@@ -260,14 +260,14 @@ class EstonianPIN {
     }
 
     /**
-     * Calculate Personal Identification Number stage I checksum.
+     * Calculate Personal Identification Code stage I checksum.
      * 
      * In this stage the first 10 digits from left to right are multiplied with 
      * corresponding number from sequence (1,2,3,4,5,6,7,8,9,1). 
      * Resulting products are then added together.
      * Finally modulo 11 calculation is applied.
      * 
-     * @param string $pin Estonian Personal Identification Number.
+     * @param string $pin Estonian Personal Identification Code.
      * @return int Control number calculated using modulo 11 algorithm.
      * Using multiplier sequence (1,2,3,4,5,6,7,8,9,1).
      */
@@ -282,7 +282,7 @@ class EstonianPIN {
     }
 
     /**
-     * Calculate Personal Identification Number stage II checksum. 
+     * Calculate Personal Identification Code stage II checksum. 
      * This stage is only needed when the result from stage I equals 10.
      * 
      * In this stage the first 10 digits from left to right are multiplied with 
@@ -290,7 +290,7 @@ class EstonianPIN {
      * Resulting products are then added together.
      * Finally modulo 11 calculation is applied.
      * 
-     * @param string $pin Estonian Personal Identification Number.
+     * @param string $pin Estonian Personal Identification Code.
      * @return int Control number calculated using modulo 11 algorithm.
      * Using multiplier sequence (3,4,5,6,7,8,9,1,2,3). 
      * If modulo 11 calculation equals 10 the control sum is 0, remainder otherwise.

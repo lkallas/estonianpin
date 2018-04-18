@@ -3,7 +3,7 @@
 namespace Lkallas\Estonianpin\Exceptions;
 
 /**
- * Estonian Personal Identification Number checksum validation exception.
+ * Estonian Personal Identification Code checksum validation exception.
  *
  * @author Lennar Kallas <lennar@lennar.eu>
  */

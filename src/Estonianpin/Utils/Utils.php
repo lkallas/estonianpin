@@ -7,7 +7,7 @@ use Lkallas\Estonianpin\Exceptions\InvalidDateException;
 use Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException;
 
 /**
- * Utility functions for Estonian Personal Identification Number.
+ * Utility functions for Estonian Personal Identification Code.
  *
  * @author Lennar Kallas <lennar@lennar.eu>
  */
@@ -31,18 +31,18 @@ class Utils {
     /**
      * Determine if the person is underaged.
      * 
-     * @param string $pin Estonian Personal Identification Number.
+     * @param string $pin Estonian Personal Identification Code.
      * @param int $ageLimit Age in years from which person is not considered underaged anymore. 
      * In Estonia this age is 18. In some institutions person under age of 21 is 
      * considered underaged as well. Default value is 18.
      * 
      * @return bool True if the person is underaged (below the set age limit), false otherwise.
      * @throws InvalidPersonalIdentificationNrException
-     * If validation of Personal Identification Number fails.
+     * If validation of Personal Identification Code fails.
      */
     public function isUnderAge($pin, $ageLimit = 18): bool {
         if (!$this->estonianPIN->validate($pin)) {
-            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Number!');
+            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Code!');
         }
 
         return ($this->estonianPIN->getCurrentAgeInYearsByPIN($pin) < $ageLimit);
@@ -51,27 +51,27 @@ class Utils {
     /**
      * Determine if the person is a pensioner by the pension law in Estonia.
      * 
-     * @param string $pin Estonian Personal Identification Number.
+     * @param string $pin Estonian Personal Identification Code.
      * @param int $pensionAge Age in years from which a person is considered as 
      * a pensioner by law and eligible for receiving national pension in Estonia. 
      * Default value is 65, but may differ - depending on the person's year of birth.
      * 
      * @return bool True if the person is considered as a pensioner by Estonian laws, false otherwise.
      * @throws InvalidPersonalIdentificationNrException
-     * If validation of Personal Identification Number fails.
+     * If validation of Personal Identification Code fails.
      */
     public function isPensioner($pin, $pensionAge = 65): bool {
         if (!$this->estonianPIN->validate($pin)) {
-            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Number!');
+            throw new InvalidPersonalIdentificationNrException('Invalid Personal Identification Code!');
         }
 
         return ($this->estonianPIN->getCurrentAgeInYearsByPIN($pin) >= $pensionAge);
     }
 
     /**
-     * Gets the details about Estonian citizen by his/her Personal Identification Number.
+     * Gets the details about Estonian citizen by his/her Personal Identification Code.
      * 
-     * @param string $pin Estonian Personal Identification Number.
+     * @param string $pin Estonian Personal Identification Code.
      * @return array Associative array with 
      * keys 'gender' (male/female), 'year', 'month', 'day', 'serial'.
      */
@@ -121,9 +121,9 @@ class Utils {
     }
 
     /**
-     * Gets the details about Estonian citizen by his/her Personal Identification Number.
+     * Gets the details about Estonian citizen by his/her Personal Identification Code.
      * 
-     * @param string $pin Estonian Personal Identification Number.
+     * @param string $pin Estonian Personal Identification Code.
      * @return \stdClass Object with properties gender (male/female), year, month, day, serial.
      */
     public function getPersonDetailsByPIN($pin): \stdClass {
@@ -131,9 +131,9 @@ class Utils {
     }
 
     /**
-     * Generates random & valid Estonian Personal Identification Number for male person.
+     * Generates random & valid Estonian Personal Identification Code for male person.
      * 
-     * @return string Estonian Personal Identification Number.
+     * @return string Estonian Personal Identification Code.
      */
     public function generateRandomMalePIN(): string {
         $arr = $this->generateRandomDateArray();
@@ -142,9 +142,9 @@ class Utils {
     }
 
     /**
-     * Generates random & valid Estonian Personal Identification Number for female person.
+     * Generates random & valid Estonian Personal Identification Code for female person.
      * 
-     * @return string Estonian Personal Identification Number.
+     * @return string Estonian Personal Identification Code.
      */
     public function generateRandomFemalePIN(): string {
         $arr = $this->generateRandomDateArray();
@@ -153,9 +153,9 @@ class Utils {
     }
 
     /**
-     * Generates random & valid Estonian Personal Identification Number.
+     * Generates random & valid Estonian Personal Identification Code.
      * 
-     * @return string Estonian Personal Identification Number.
+     * @return string Estonian Personal Identification Code.
      */
     public function generateRandomPIN(): string {
         $arr = $this->generateRandomDateArray();
@@ -164,7 +164,7 @@ class Utils {
     }
 
     /**
-     * Generates Estonian Personal Identification Number using the given person details.
+     * Generates Estonian Personal Identification Code using the given person details.
      * 
      * @param array|object $details Associative array or object with person details.
      * @throws \InvalidArgumentException
