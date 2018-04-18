@@ -12,7 +12,8 @@ Lisage järgnev sõltuvus oma projekti `composer.json` faili:
     "lkallas/estonianpin": "^1.0"
 }
 ```
-järgnevalt käivitage käsurealt käsk olenevalt composeri paigaldusviisist `composer update` või `php composer.phar update`
+
+Järgnevalt käivitage käsurealt käsk olenevalt composeri paigaldusviisist `composer update` või `php composer.phar update`
 
 Alternatiiv on paigaldada viimane versioon ka käsurealt:
 
