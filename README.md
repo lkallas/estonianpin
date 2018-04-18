@@ -8,7 +8,7 @@
 [![HitCount](http://hits.dwyl.io/lkallas/estonianpin.svg)](http://hits.dwyl.io/lkallas/estonianpin)
 
 
-A simple tool written in PHP for processing Estonian Personal Identification Number (isikukood).
+A simple tool written in PHP for processing Estonian Personal Identification Code (isikukood).
 
 ## Documentation
 
