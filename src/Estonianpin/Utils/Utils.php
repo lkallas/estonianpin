@@ -244,7 +244,7 @@ class Utils {
      * @param \DateTime $end
      * @return Iterable
      */
-    public function getPinsGeneratorForRange(\DateTime $start, \DateTime $end): iterable
+    public function getPinsGeneratorForRange(\DateTime $start, \DateTime $end): \Iterator
     {
         $currentDate = $start;
         while ($currentDate <= $end) {
