@@ -272,4 +272,20 @@ class UtilsTest extends TestCase {
         $this->utils->getGenderAndCenturyIdentificationNumber(2014, 'hermaphrodite');
     }
 
+    /**
+     * @covers \Lkallas\Estonianpin\Utils\Utils::getPinsGeneratorForRange()
+     */
+    public function testItCanGenerateAllPinsForDateRange(){
+        $start = new \DateTime('2005-01-01');
+        $end = new \DateTime('2005-01-02');
+        $instance = new EstonianPIN();
+        $count = 0;
+        $pinGenerator = $this->utils->getPinsGeneratorForRange($start, $end);
+        foreach ($pinGenerator as $pin){
+            $this->assertTrue($instance->validate($pin));
+            $count++;
+        }
+        $this->assertEquals(2*2*999, $count);
+    }
+
 }

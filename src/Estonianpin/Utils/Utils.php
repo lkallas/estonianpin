@@ -239,4 +239,37 @@ class Utils {
         ];
     }
 
+    /**
+     * @param \DateTime $start
+     * @param \DateTime $end
+     * @return Iterable
+     */
+    public function getPinsGeneratorForRange(\DateTime $start, \DateTime $end): iterable
+    {
+        $currentDate = $start;
+        while ($currentDate <= $end) {
+            for ($i = 1; $i < 1000; $i++) {
+                $year = (int)$currentDate->format('Y');
+                $genderAndCenturyMale = $this->getGenderAndCenturyIdentificationNumber($year, EstonianPIN::GENDER_MALE);
+                $genderAndCenturyFemale = $this->getGenderAndCenturyIdentificationNumber($year, EstonianPIN::GENDER_FEMALE);
+                $centuryYear = substr((string)$year, -2);
+                $serialNo = sprintf('%03d', $i);
+
+                $postFix = $centuryYear
+                    . sprintf('%02d', strval((int)$currentDate->format('m')))
+                    . sprintf('%02d', strval((int)$currentDate->format('d')))
+                    . $serialNo;
+                $baseMale = $genderAndCenturyMale . $postFix;
+                $baseFemale = $genderAndCenturyFemale . $postFix;
+
+                $checkSumMale = $this->estonianPIN->calculateCheckSum($baseMale);
+                $checkSumFemale = $this->estonianPIN->calculateCheckSum($baseFemale);
+
+                yield $baseFemale . $checkSumFemale;
+                yield $baseMale . $checkSumMale;
+            }
+            $currentDate->add(new \DateInterval("P1D"));
+        }
+    }
+
 }
