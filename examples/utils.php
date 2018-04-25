@@ -37,3 +37,11 @@ printf('Random PIN from provided details: %s%s', $random, PHP_EOL);
 // Get details about the person
 $details = json_encode($utils->getPersonDetailsByPINAsArray($pin), JSON_PRETTY_PRINT);
 printf('According to %s the details about the person are: %s%s', $pin, $details, PHP_EOL);
+
+$pinGenerator = $utils->getPinsGeneratorForRange(new \DateTime('1991-01-01'), new \DateTime('1991-01-02'));
+foreach ($pinGenerator as $n => $pin){
+    printf('PIN number %d for 1991-01-01 is %s%s', $n+1, $pin, PHP_EOL);
+    if ($n > 4) {
+        break;
+    }
+}
