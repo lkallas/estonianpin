@@ -220,7 +220,7 @@ class EstonianPIN {
         // Initial check: must be string and match the regex.
         if (!$this->isValidatedByRegex($pin)) {
             throw new InvalidPersonalIdentificationNrException($pin . 'is not a valid Personal Identification Code. '
-            . 'Check length, gender/century indentificator and date format.'
+                    . 'Check length, gender/century indentificator and date format.'
             );
         }
 
@@ -235,7 +235,7 @@ class EstonianPIN {
 
         if ($checkSum !== $calculatedCheckSum) {
             throw new InvalidCheckSumException(
-            sprintf('%s has invalid control number. Is %d but should be %d!', $pin, $checkSum, $calculatedCheckSum)
+                    sprintf('%s has invalid control number. Is %d but should be %d!', $pin, $checkSum, $calculatedCheckSum)
             );
         }
 
@@ -272,10 +272,11 @@ class EstonianPIN {
      * Using multiplier sequence (1,2,3,4,5,6,7,8,9,1).
      */
     public function calculateCheckSumStageI($pin): int {
+        $weights = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1];
         $sum = 0;
         for ($i = 0; $i < 10; $i++) {
-            $multiplier = $i + 1;
-            $sum += ((int) (substr($pin, $i, 1)) * ($multiplier > 9 ? 1 : $multiplier));
+            $multiplier = $weights[$i];
+            $sum += ((int) (substr($pin, $i, 1)) * $multiplier);
         }
 
         return $sum % 11;
@@ -296,10 +297,11 @@ class EstonianPIN {
      * If modulo 11 calculation equals 10 the control sum is 0, remainder otherwise.
      */
     public function calculateCheckSumStageII($pin): int {
+        $weights = [3, 4, 5, 6, 7, 8, 9, 1, 2, 3];
         $sum = 0;
         for ($i = 0; $i < 10; $i++) {
-            $multiplier = $i + 3;
-            $sum += ((int) (substr($pin, $i, 1)) * ($multiplier > 6 ? $i - 6 : $multiplier));
+            $multiplier = $weights[$i];
+            $sum += ((int) (substr($pin, $i, 1)) * $multiplier);
         }
 
         $remainder = $sum % 11;

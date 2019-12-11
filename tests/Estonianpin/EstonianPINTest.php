@@ -195,7 +195,7 @@ class EstonianPINTest extends TestCase {
         $this->assertFalse($this->estonianPIN->validate('39902310167'));
         $this->assertFalse($this->estonianPIN->validate('39902230300'));
         $this->assertTrue($this->estonianPIN->validate('38610150180'));
-        $this->assertTrue($this->estonianPIN->validate('39310075456'));
+        $this->assertFalse($this->estonianPIN->validate('39310075456'));
     }
 
     /**
@@ -204,7 +204,8 @@ class EstonianPINTest extends TestCase {
     public function testCalculateCheckSum() {
         $this->assertEquals(5, $this->estonianPIN->calculateCheckSum('38610150005'));
         $this->assertEquals(0, $this->estonianPIN->calculateCheckSum('38610150060'));
-        $this->assertEquals(6, $this->estonianPIN->calculateCheckSum('39310075456'));
+        $this->assertEquals(5, $this->estonianPIN->calculateCheckSum('48011220235'));
+        $this->assertNotEquals(6, $this->estonianPIN->calculateCheckSum('39310075456'));
         $this->assertNotEquals(1, $this->estonianPIN->calculateCheckSum('38610150060'));
     }
 
@@ -214,6 +215,7 @@ class EstonianPINTest extends TestCase {
     public function testCalculateCheckSumStageI() {
         $this->assertEquals(1, $this->estonianPIN->calculateCheckSumStageI('38610155611'));
         $this->assertEquals(10, $this->estonianPIN->calculateCheckSumStageI('39310075456'));
+        $this->assertEquals(10, $this->estonianPIN->calculateCheckSumStageI('48011220235'));
         $this->assertNotEquals(5, $this->estonianPIN->calculateCheckSumStageI('38610155467'));
     }
 
@@ -221,8 +223,8 @@ class EstonianPINTest extends TestCase {
      * @covers Lkallas\Estonianpin\EstonianPIN::calculateCheckSumStageII
      */
     public function testCalculateCheckSumStageII() {
-        $this->assertEquals(0, $this->estonianPIN->calculateCheckSumStageII('38007151430'));
-        $this->assertEquals(4, $this->estonianPIN->calculateCheckSumStageII('46804100964'));
+        $this->assertEquals(5, $this->estonianPIN->calculateCheckSumStageII('48011220235'));
+        $this->assertNotEquals(0, $this->estonianPIN->calculateCheckSumStageII('38007151430'));
         $this->assertNotEquals(5, $this->estonianPIN->calculateCheckSumStageII('47811243422'));
     }
 
