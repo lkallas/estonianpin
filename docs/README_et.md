@@ -57,3 +57,4 @@ $ composer require lkallas/estonianpin
 | generate | isiku andmed `array` | `string` | Tagastab suvalise isikukoodi sisendandmete alusel |
 | generateValidRandomDate |  | `string` | Genereerib suvalise kuupäeva kuni 100 aastat tagasi ja käesoleva kuupäeva vahel pp.kk.aaaa formaadis  |
 | generateRandomDateArray | | `array` | Sama, mis eelmine aga tagastuse tüüp on assotsiatiivne massiiv |
+| getPinsGeneratorForRange | Vahemiku alguskuupäev `\DateTime`, vahemiku lõppkuupäev `\DateTime` | `\Iterator` | Tagastab generaatori, mis genereerib kõik isikukoodid antud kuupäevade vahemikus. |

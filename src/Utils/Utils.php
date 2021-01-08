@@ -103,7 +103,7 @@ class Utils {
 
         if ($gender !== EstonianPIN::GENDER_FEMALE && $gender !== EstonianPIN::GENDER_MALE) {
             throw new \InvalidArgumentException('Gender must be either: '
-            . EstonianPIN::GENDER_FEMALE . ' or ' . EstonianPIN::GENDER_MALE
+                    . EstonianPIN::GENDER_FEMALE . ' or ' . EstonianPIN::GENDER_MALE
             );
         }
 
@@ -178,14 +178,14 @@ class Utils {
 
         if (empty($details) || !is_array($details)) {
             throw new \InvalidArgumentException('Invalid parameter! '
-            . 'The parameter must be an associative array with person details.'
+                    . 'The parameter must be an associative array with person details.'
             );
         }
 
         foreach (self::GENERATOR_MANDATORY_KEYS as $key) {
             if (!array_key_exists($key, $details) || empty($details[$key])) {
                 throw new \InvalidArgumentException(
-                'Mandatory key "' . $key . '" is missing or empty!'
+                        'Mandatory key "' . $key . '" is missing or empty!'
                 );
             }
         }
@@ -193,7 +193,7 @@ class Utils {
         $gender = $details['gender'];
         if ($gender !== EstonianPIN::GENDER_FEMALE && $gender !== EstonianPIN::GENDER_MALE) {
             throw new \InvalidArgumentException('Gender must be either: '
-            . EstonianPIN::GENDER_FEMALE . ' or ' . EstonianPIN::GENDER_MALE
+                    . EstonianPIN::GENDER_FEMALE . ' or ' . EstonianPIN::GENDER_MALE
             );
         }
 
@@ -237,6 +237,41 @@ class Utils {
             'month' => (int) $time[1],
             'day' => (int) $time[0]
         ];
+    }
+
+    /**
+     * Generator for creating valid Estonian Personal Identification Code in the given DateTime range.
+     * 
+     * @param \DateTime $start DateTime range start.
+     * @param \DateTime $end DateTime range end.
+     * @return \Iterator
+     */
+    public function getPinsGeneratorForRange(\DateTime $start, \DateTime $end): \Iterator {
+        $currentDate = $start;
+
+        while ($currentDate <= $end) {
+            for ($i = 1; $i < 1000; $i++) {
+                $year = (int) $currentDate->format('Y');
+                $genderAndCenturyMale = $this->getGenderAndCenturyIdentificationNumber($year, EstonianPIN::GENDER_MALE);
+                $genderAndCenturyFemale = $this->getGenderAndCenturyIdentificationNumber($year, EstonianPIN::GENDER_FEMALE);
+                $centuryYear = substr((string) $year, -2);
+                $serialNo = sprintf('%03d', $i);
+
+                $postFix = $centuryYear
+                        . sprintf('%02d', strval((int) $currentDate->format('m')))
+                        . sprintf('%02d', strval((int) $currentDate->format('d')))
+                        . $serialNo;
+                $baseMale = $genderAndCenturyMale . $postFix;
+                $baseFemale = $genderAndCenturyFemale . $postFix;
+
+                $checkSumMale = $this->estonianPIN->calculateCheckSum($baseMale);
+                $checkSumFemale = $this->estonianPIN->calculateCheckSum($baseFemale);
+
+                yield $baseFemale . $checkSumFemale;
+                yield $baseMale . $checkSumMale;
+            }
+            $currentDate->add(new \DateInterval("P1D"));
+        }
     }
 
 }

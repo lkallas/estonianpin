@@ -57,3 +57,4 @@ $ composer require lkallas/estonianpin
 | generate | isiku andmed `array` | `string` | Generates a Estonian Personal Identification Code based on inserted data |
 | generateValidRandomDate |  | `string` | Generates random date between current date and the date up to 100 years back. The format will be dd.mm.yyyy  |
 | generateRandomDateArray | | `array` | Same as the previous but the return type is an array |
+| getPinsGeneratorForRange | Range begin date `\DateTime`, range end date `\DateTime` | `\Iterator` | Returns generator for all identification numbers in range |
