@@ -1,6 +1,11 @@
 language: php
 
 dist: bionic
+os: linux
+
+env:
+  global:
+    - XDEBUG_MODE=coverage
       
 php:
   - 7.3
