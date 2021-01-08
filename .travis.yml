@@ -1,6 +1,5 @@
 language: php
 
-sudo: false
 dist: trusty
 
 php:
@@ -9,9 +8,9 @@ php:
   - 8.0
 
 cache:
-  paths:
-    - vendor
-
+  directories:
+    - $HOME/.composer/cache/files
+    
 before_script:
   - composer self-update
   - composer install --optimize-autoloader --no-interaction --prefer-dist
