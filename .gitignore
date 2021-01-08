@@ -4,3 +4,4 @@
 composer.lock
 composer.phar
 /tests/_reports/
+/.phpunit.result.cache

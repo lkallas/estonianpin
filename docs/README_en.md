@@ -1,6 +1,6 @@
 ## Requirements
 
-This library supports PHP starting from version **7.0**
+This library supports PHP starting from version **7.3**
 
 
 ## Installing (presuming Composer is installed)

@@ -1,6 +1,6 @@
 ## Süsteemi nõuded
 
-Käesolev teek toetab PHP-d alates versioonist **7.0**
+Käesolev teek toetab PHP-d alates versioonist **7.3**
 
 
 ## Paigaldus (eeldab Composeri olemasolu)

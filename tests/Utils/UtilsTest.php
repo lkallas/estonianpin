@@ -12,7 +12,7 @@ class UtilsTest extends TestCase {
      */
     protected $utils;
 
-    protected function setUp() {
+    protected function setUp(): void {
         $this->utils = new Utils();
     }
 
@@ -35,10 +35,10 @@ class UtilsTest extends TestCase {
     }
 
     /**
-     * @expectedException Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException
      * @covers Lkallas\Estonianpin\Utils\Utils::isUnderAge
      */
     public function testIsUnderAgeExceptionThrowing() {
+        $this->expectException(\Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException::class);
         $this->utils->isUnderAge('80301450078');
     }
 
@@ -61,10 +61,10 @@ class UtilsTest extends TestCase {
     }
 
     /**
-     * @expectedException Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException
      * @covers Lkallas\Estonianpin\Utils\Utils::isPensioner
      */
     public function testIsPensionerExceptionThrowing() {
+        $this->expectException(\Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException::class);
         $this->utils->isPensioner('1234567890');
     }
 
@@ -107,7 +107,7 @@ class UtilsTest extends TestCase {
             $this->assertNotEmpty($pin);
             $this->assertNotNull($pin);
             $this->assertTrue(intval(substr($pin, 0, 1)) % 2 !== 0);
-            $this->assertRegExp(EstonianPIN::PIN_REGEX, $pin);
+            $this->assertMatchesRegularExpression(EstonianPIN::PIN_REGEX, $pin);
         }
     }
 
@@ -120,7 +120,7 @@ class UtilsTest extends TestCase {
             $this->assertNotEmpty($pin);
             $this->assertNotNull($pin);
             $this->assertTrue(intval(substr($pin, 0, 1)) % 2 === 0);
-            $this->assertRegExp(EstonianPIN::PIN_REGEX, $pin);
+            $this->assertMatchesRegularExpression(EstonianPIN::PIN_REGEX, $pin);
         }
     }
 
@@ -132,7 +132,7 @@ class UtilsTest extends TestCase {
             $pin = $this->utils->generateRandomPIN();
             $this->assertNotEmpty($pin);
             $this->assertNotNull($pin);
-            $this->assertRegExp(EstonianPIN::PIN_REGEX, $pin);
+            $this->assertMatchesRegularExpression(EstonianPIN::PIN_REGEX, $pin);
         }
     }
 
@@ -150,7 +150,7 @@ class UtilsTest extends TestCase {
             $pin = $this->utils->generate($details);
             $this->assertNotEmpty($pin);
             $this->assertNotNull($pin);
-            $this->assertRegExp(EstonianPIN::PIN_REGEX, $pin);
+            $this->assertMatchesRegularExpression(EstonianPIN::PIN_REGEX, $pin);
         }
     }
 
@@ -168,23 +168,23 @@ class UtilsTest extends TestCase {
             $pin = $this->utils->generate($details);
             $this->assertNotEmpty($pin);
             $this->assertNotNull($pin);
-            $this->assertRegExp(EstonianPIN::PIN_REGEX, $pin);
+            $this->assertMatchesRegularExpression(EstonianPIN::PIN_REGEX, $pin);
         }
     }
 
     /**
-     * @expectedException \InvalidArgumentException
      * @covers Lkallas\Estonianpin\Utils\Utils::generate
      */
     public function testGenerateWithExceptionThrowingOnEmptyDetails() {
+        $this->expectException(\InvalidArgumentException::class);
         $this->utils->generate(null);
     }
 
     /**
-     * @expectedException \InvalidArgumentException
      * @covers Lkallas\Estonianpin\Utils\Utils::generate
      */
     public function testGenerateWithExceptionThrowingOnInvalidGender() {
+        $this->expectException(\InvalidArgumentException::class);
         $details = new \stdClass();
         $details->month = random_int(1, 12);
         $details->day = random_int(1, 28);
@@ -194,10 +194,10 @@ class UtilsTest extends TestCase {
     }
 
     /**
-     * @expectedException \Lkallas\Estonianpin\Exceptions\InvalidDateException
      * @covers Lkallas\Estonianpin\Utils\Utils::generate
      */
     public function testGenerateWithExceptionThrowingOnInvalidDate() {
+        $this->expectException(\Lkallas\Estonianpin\Exceptions\InvalidDateException::class);
         $details = new \stdClass();
         $details->month = 2;
         $details->day = 30;
@@ -207,10 +207,10 @@ class UtilsTest extends TestCase {
     }
 
     /**
-     * @expectedException \InvalidArgumentException
      * @covers Lkallas\Estonianpin\Utils\Utils::generate
      */
     public function testGenerateWithExceptionThrowingOnMissingMandatoryDetailKey() {
+        $this->expectException(\InvalidArgumentException::class);
         $details = new \stdClass();
         $details->month = random_int(1, 12);
         $details->day = random_int(1, 28);
@@ -257,18 +257,18 @@ class UtilsTest extends TestCase {
     }
 
     /**
-     * @expectedException \InvalidArgumentException
      * @covers Lkallas\Estonianpin\Utils\Utils::getGenderAndCenturyIdentificationNumber
      */
     public function testGetGenderAndCenturyIdentificationNumberExceptionThrowingOnInvalidYear() {
+        $this->expectException(\InvalidArgumentException::class);
         $this->utils->getGenderAndCenturyIdentificationNumber(1759, EstonianPIN::GENDER_FEMALE);
     }
 
     /**
-     * @expectedException \InvalidArgumentException
      * @covers Lkallas\Estonianpin\Utils\Utils::getGenderAndCenturyIdentificationNumber
      */
     public function testGetGenderAndCenturyIdentificationNumberExceptionThrowingOnInvalidGender() {
+        $this->expectException(\InvalidArgumentException::class);
         $this->utils->getGenderAndCenturyIdentificationNumber(2014, 'hermaphrodite');
     }
 

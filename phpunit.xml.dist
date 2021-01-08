@@ -1,22 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php"
-         colors="true">
+<phpunit bootstrap="vendor/autoload.php" colors="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+
     <testsuites>
         <testsuite name="EstonianPinTest">
             <directory suffix=".php">./tests</directory>
         </testsuite>
     </testsuites>
-    
-    <filter>
-        <whitelist>
+
+    <coverage includeUncoveredFiles="true"
+              processUncoveredFiles="true"
+              ignoreDeprecatedCodeUnits="true"
+              disableCodeCoverageIgnore="false">
+        <include>
             <directory suffix=".php">./src</directory>
-        </whitelist>
-    </filter>
-    
+        </include>
+        
+        <exclude>
+            <directory suffix=".php">src/generated</directory>
+            <file>src/autoload.php</file>
+        </exclude>
+
+        <report>
+            <clover outputFile="tests/_reports/logs/clover.xml"/>            
+            <text outputFile="tests/_reports/testdox/coverage" showUncoveredFiles="false" showOnlySummary="true"/>
+            <html outputDirectory="tests/_reports/coverage" lowUpperBound="35" highLowerBound="70"/>
+            <crap4j outputFile="tests/_reports/logs/crap4j.xml" threshold="50"/>
+            <php outputFile="tests/_reports/coverage.php"/>
+            <xml outputDirectory="tests/_reports/logs/"/>
+        </report>
+    </coverage>
+
     <logging>
-        <log type="coverage-clover" target="tests/_reports/logs/clover.xml"/>
-        <log type="coverage-html" target="tests/_reports/coverage" charset="UTF-8" yui="true" highlight="true" lowUpperBound="35" highLowerBound="70" />
-        <log type="testdox-text" target="tests/_reports/testdox/executed.txt"/>
+        <teamcity outputFile="tests/_reports/logs/teamcity.txt"/>
+        <testdoxHtml outputFile="tests/_reports/logs/testdox.html"/>
+        <testdoxText outputFile="tests/_reports/logs/testdox.txt"/>
+        <testdoxXml outputFile="tests/_reports/logs/testdox.xml"/>
+        <text outputFile="tests/_reports/logs/logfile.txt"/>
     </logging>
-    
 </phpunit>

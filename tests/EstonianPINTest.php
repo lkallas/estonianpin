@@ -16,7 +16,7 @@ class EstonianPINTest extends TestCase {
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    protected function setUp() {
+    protected function setUp(): void {
         $this->estonianPIN = new EstonianPIN();
     }
 
@@ -34,10 +34,10 @@ class EstonianPINTest extends TestCase {
     }
 
     /**
-     * @expectedException Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException
      * @covers Lkallas\Estonianpin\EstonianPIN::getGender
      */
     public function testGetGenderExceptionThrowing() {
+        $this->expectException(\Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException::class);
         $this->estonianPIN->getGender('30113454321');
     }
 
@@ -55,10 +55,10 @@ class EstonianPINTest extends TestCase {
     }
 
     /**
-     * @expectedException Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException
      * @covers Lkallas\Estonianpin\EstonianPIN::getBirthCentury
      */
     public function testGetBirthCenturyExceptionThrowing() {
+        $this->expectException(\Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException::class);
         $this->estonianPIN->getBirthCentury('30113454321');
     }
 
@@ -76,10 +76,10 @@ class EstonianPINTest extends TestCase {
     }
 
     /**
-     * @expectedException Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException
      * @covers Lkallas\Estonianpin\EstonianPIN::getYearOfBirth
      */
     public function testGetYearOfBirthExceptionThrowing() {
+        $this->expectException(\Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException::class);
         $this->estonianPIN->getYearOfBirth('30113454321');
     }
 
@@ -97,10 +97,10 @@ class EstonianPINTest extends TestCase {
     }
 
     /**
-     * @expectedException Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException
      * @covers Lkallas\Estonianpin\EstonianPIN::getMonthOfBirth
      */
     public function testGetMonthOfBirthExceptionThrowing() {
+        $this->expectException(\Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException::class);
         $this->estonianPIN->getMonthOfBirth('30113454321');
     }
 
@@ -116,10 +116,10 @@ class EstonianPINTest extends TestCase {
     }
 
     /**
-     * @expectedException Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException
      * @covers Lkallas\Estonianpin\EstonianPIN::getDayOfBirth
      */
     public function testGetDayOfBirthExceptionThrowing() {
+        $this->expectException(\Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException::class);
         $this->estonianPIN->getDayOfBirth('30113454321');
     }
 
@@ -137,10 +137,10 @@ class EstonianPINTest extends TestCase {
     }
 
     /**
-     * @expectedException Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException
      * @covers Lkallas\Estonianpin\EstonianPIN::getBirthDateAsDatetimeObj
      */
     public function testGetBirthDateAsDatetimeObjExceptionThrowing() {
+        $this->expectException(\Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException::class);
         $this->estonianPIN->getBirthDateAsDatetimeObj(null);
     }
 
@@ -155,10 +155,10 @@ class EstonianPINTest extends TestCase {
     }
 
     /**
-     * @expectedException Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException
      * @covers Lkallas\Estonianpin\EstonianPIN::getCurrentAgeByPIN
      */
     public function testGetCurrentAgeByPINExceptionThrowing() {
+        $this->expectException(\Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException::class);
         $this->estonianPIN->getCurrentAgeByPIN('');
     }
 
@@ -170,10 +170,10 @@ class EstonianPINTest extends TestCase {
     }
 
     /**
-     * @expectedException Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException
      * @covers Lkallas\Estonianpin\EstonianPIN::getCurrentAgeInYearsByPIN
      */
     public function testGetCurrentAgeInYearsByPINExceptionThrowing() {
+        $this->expectException(\Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException::class);
         $this->estonianPIN->getCurrentAgeInYearsByPIN('gummybear');
     }
 
@@ -238,10 +238,10 @@ class EstonianPINTest extends TestCase {
     }
 
     /**
-     * @expectedException Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException
      * @covers Lkallas\Estonianpin\EstonianPIN::getSerialNumber
      */
     public function testGetSerialNumberExceptionThrowing() {
+        $this->expectException(\Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException::class);
         $this->estonianPIN->getSerialNumber('');
     }
 
@@ -253,26 +253,26 @@ class EstonianPINTest extends TestCase {
     }
 
     /**
-     * @expectedException \Lkallas\Estonianpin\Exceptions\InvalidDateException
      * @covers Lkallas\Estonianpin\EstonianPIN::validateWithExceptions
      */
     public function testValidateWithExceptionsWithInvalidDate() {
+        $this->expectException(\Lkallas\Estonianpin\Exceptions\InvalidDateException::class);
         $this->estonianPIN->validateWithExceptions('38602301213');
     }
 
     /**
-     * @expectedException \Lkallas\Estonianpin\Exceptions\InvalidCheckSumException
      * @covers Lkallas\Estonianpin\EstonianPIN::validateWithExceptions
      */
     public function testValidateWithExceptionsWithInvalidCheckSum() {
+        $this->expectException(\Lkallas\Estonianpin\Exceptions\InvalidCheckSumException::class);
         $this->estonianPIN->validateWithExceptions('50310011213');
     }
 
     /**
-     * @expectedException \Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException
      * @covers Lkallas\Estonianpin\EstonianPIN::validateWithExceptions
      */
     public function testValidateWithExceptionsWithInvalidFormat() {
+        $this->expectException(\Lkallas\Estonianpin\Exceptions\InvalidPersonalIdentificationNrException::class);
         $this->estonianPIN->validateWithExceptions('812345678910');
     }
 
