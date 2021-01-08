@@ -3,13 +3,13 @@
          colors="true">
     <testsuites>
         <testsuite name="EstonianPinTest">
-            <directory>tests/Estonianpin</directory>
+            <directory suffix=".php">./tests</directory>
         </testsuite>
     </testsuites>
     
     <filter>
         <whitelist>
-            <directory suffix=".php">src/Estonianpin/</directory>
+            <directory suffix=".php">./src</directory>
         </whitelist>
     </filter>
     

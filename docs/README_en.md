@@ -1,6 +1,6 @@
 ## Requirements
 
-This library supports PHP from version **7.0**
+This library supports PHP starting from version **7.0**
 
 
 ## Installing (presuming Composer is installed)
@@ -13,9 +13,9 @@ Add the following to your `composer.json` file:
 }
 ```
 
-Give the command depending on the composer installation `composer update` or `php composer.phar update`
+Run command depending on the composer installation `composer update` or `php composer.phar update`
 
-Alternatively you can install by simply using command:
+Alternatively you can install by simply running command:
 
 ```bash
 $ composer require lkallas/estonianpin
@@ -39,15 +39,15 @@ $ composer require lkallas/estonianpin
 | getCurrentAgeByPIN | Estonian Personal Identification Code `string` | `DateInterval` | Returns person's age as PHP DateInterval object based on Estonian Personal Identification Code |
 | getCurrentAgeInYearsByPIN| Estonian Personal Identification Code `string` | `int` | Returns person's age in years based on Estonian Personal Identification Code |
 | calculateCheckSum | Estonian Personal Identification Code `string` | `int` | Calculates and returns Estonian Personal Identification Code checksum |
-| calculateCheckSumStageI | Estonian Personal Identification Code `string` | `int` | Calculates and returns the checksum which is calculated using stage I multpilier sequence  |
-| calculateCheckSumStageII | Estonian Personal Identification Code `string` | `int` | Calculates and returns the checksum which is calculated using stage II multpilier sequence |
+| calculateCheckSumStageI | Estonian Personal Identification Code `string` | `int` | Calculates and returns the checksum which is calculated using sequence of weights `[1, 2, 3, 4, 5, 6, 7, 8, 9, 1]` |
+| calculateCheckSumStageII | Estonian Personal Identification Code `string` | `int` | Calculates and returns the checksum which is calculated using sequence of weights `[3, 4, 5, 6, 7, 8, 9, 1, 2, 3]` |
 
 ### Utils class
 
 | Function | Arguments | Return type | Description |
 | -------- | --------- | ----------- | ----------- |
-| isUnderAge | Estonian Personal Identification Code `string`, agelimit `int` | `boolean` | Checks if the person is a minor based on Estonian Personal Identification Code. Default age limit is 18 |
-| isPensioner | Estonian Personal Identification Code `string`, agelimit `int` | `boolean` | Checks if the person is a pensioner based on Estonian Personal Identification Code. Default age lower age limit is 65 |
+| isUnderAge | Estonian Personal Identification Code `string`, agelimit `int` | `boolean` | Checks whether the person is a minor based on Estonian Personal Identification Code. Default age limit is 18 |
+| isPensioner | Estonian Personal Identification Code `string`, agelimit `int` | `boolean` | Checks whether the person is a pensioner based on Estonian Personal Identification Code. Default age limit is 65 |
 | getGenderAndCenturyIdentificationNumber | year of birth `int`, gender `string`  | `int` | Returns person's gender/birth century identification number based on year of birth and gender |
 | getPersonDetailsByPINAsArray | Estonian Personal Identification Code `string` | `array` | Returns associative array with person details based on Estonian Personal Identification Code (gender, year of birth, month of birth, day of birth and serial number) |
 | getPersonDetailsByPIN | Estonian Personal Identification Code `string` | `stdClass` | Same as previous but the return type is an object |

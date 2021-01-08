@@ -1,6 +1,6 @@
 ## Süsteemi nõuded
 
-Käesolev rakendus toetab PHP-d alates versioonist **7.0**
+Käesolev teek toetab PHP-d alates versioonist **7.0**
 
 
 ## Paigaldus (eeldab Composeri olemasolu)
@@ -13,7 +13,7 @@ Lisage järgnev sõltuvus oma projekti `composer.json` faili:
 }
 ```
 
-Järgnevalt käivitage käsurealt käsk olenevalt composeri paigaldusviisist `composer update` või `php composer.phar update`
+Käivitage käsurealt käsk olenevalt composeri paigaldusviisist `composer update` või `php composer.phar update`
 
 Alternatiiv on paigaldada viimane versioon ka käsurealt:
 
@@ -50,10 +50,10 @@ $ composer require lkallas/estonianpin
 | isPensioner | isikukood `string`, vanusepiir `int` | `boolean` | Kontrollib kas isik on pensioniealine isikukoodi alusel. Vaikimisi loetakse pensioniealiseks isikut, kes on vähemalt 65 aastane |
 | getGenderAndCenturyIdentificationNumber | sünniaasta `int`, sugu `string`  | `int` | Tagastab soo ja sünnisajandi identifikaatori numbri isiku soo ja sünniaasta alusel |
 | getPersonDetailsByPINAsArray | isikukood `string` | `array` | Tagastab assotsiatiivse massiivi isiku andmetega isikukoodi alusel (sugu, sünniaasta, sünnikuu, sünnipäeva ja järjekorranumbri) |
-| getPersonDetailsByPIN | isikukood `string` | `stdClass` | Sama mis eelmine aga tagastuse tüüp on objekt |
-| generateRandomMalePIN  |  | `string` | Tagastab suvalise korrektse meesterahva isikukoodi |
-| generateRandomFemalePIN |  | `string` | Tagastab suvalise korrektse naisterahva isikukoodi |
-| generateRandomPIN |  | `string` | Tagastab suvalise korrektse isikukoodi |
+| getPersonDetailsByPIN | isikukood `string` | `stdClass` | Sama mis `getPersonDetailsByPINAsArray` aga tagastuse tüüp on objekt |
+| generateRandomMalePIN  |  | `string` | Tagastab suvalise korrektse isikukoodi (mees) |
+| generateRandomFemalePIN |  | `string` | Genereerib suvalise korrektse isikukoodi (naine) |
+| generateRandomPIN |  | `string` | Genereerib suvalise korrektse isikukoodi |
 | generate | isiku andmed `array` | `string` | Tagastab suvalise isikukoodi sisendandmete alusel |
 | generateValidRandomDate |  | `string` | Genereerib suvalise kuupäeva kuni 100 aastat tagasi ja käesoleva kuupäeva vahel pp.kk.aaaa formaadis  |
 | generateRandomDateArray | | `array` | Sama, mis eelmine aga tagastuse tüüp on assotsiatiivne massiiv |
