@@ -34,12 +34,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Lkallas\\": "src/Estonianpin/"
+            "Lkallas\\Estonianpin\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Lkallas\\": "tests/Estonianpin/"
+            "Lkallas\\Estonianpin\\": "tests/"
         }
     },
     "config": {
