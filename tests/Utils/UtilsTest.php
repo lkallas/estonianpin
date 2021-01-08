@@ -282,7 +282,6 @@ class UtilsTest extends TestCase {
         $count = 0;
         $pinGenerator = $this->utils->getPinsGeneratorForRange($start, $end);
         foreach ($pinGenerator as $pin) {
-            echo $pin . PHP_EOL;
             $this->assertTrue($instance->validate($pin));
             $count++;
         }
