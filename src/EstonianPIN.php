@@ -80,7 +80,7 @@ class EstonianPIN {
     /**
      * Get the person's month of birth by Personal Identification Code.
      * 
-     * @param type $pin Estonian Personal Identification Code.
+     * @param string $pin Estonian Personal Identification Code.
      * @return int The month when the person was born.
      * @throws InvalidPersonalIdentificationNrException
      * If validation of Personal Identification Code fails.
@@ -95,7 +95,7 @@ class EstonianPIN {
     /**
      * Get the person's day of birth by Estonian Personal Identification Code.
      * 
-     * @param type $pin Estonian Personal Identification Code.
+     * @param string $pin Estonian Personal Identification Code.
      * @return int The day when the person was born.
      * @throws InvalidPersonalIdentificationNrException
      * If validation of Personal Identification Code fails.
@@ -131,7 +131,7 @@ class EstonianPIN {
     /**
      * Get the person's date of birth as PHP DateTime object by Personal Identification Code.
      * 
-     * @param type $pin Estonian Personal Identification Code.
+     * @param string $pin Estonian Personal Identification Code.
      * @return \DateTime The date of birth as PHP DateTime object.
      * @throws InvalidPersonalIdentificationNrException
      * If validation of Personal Identification Code fails.
@@ -152,7 +152,7 @@ class EstonianPIN {
      * Get the person's current age as PHP DateInterval object.
      * Note that DateInterval calculation precision depends on timezone set in php.ini.
      * 
-     * @param type $pin Estonian Personal Identification Code.
+     * @param string $pin Estonian Personal Identification Code.
      * @return \DateInterval The current age as PHP DateInterval object.
      * @throws InvalidPersonalIdentificationNrException
      * If validation of Personal Identification Code fails.
@@ -181,7 +181,7 @@ class EstonianPIN {
      * Use this only to pre-validate the format of the Personal Identification Code.
      * 
      * 
-     * @param type $pin Estonian Personal Identification Code.
+     * @param string $pin Estonian Personal Identification Code.
      * @return bool True if Estonian Personal Identification Code matches the 
      * regular expression, false otherwise.
      */
@@ -209,7 +209,7 @@ class EstonianPIN {
      * Validates Estonian Personal Identification Code. 
      * Throws descriptive exceptions if any of the validation steps fails.
      * 
-     * @param type $pin Estonian Personal Identification Code.
+     * @param string $pin Estonian Personal Identification Code.
      * @return bool True if Estonian Personal Identification Code passes 
      * all validations, false otherwise.
      * @throws InvalidDateException
